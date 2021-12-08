@@ -17,12 +17,12 @@ NUM_PROPS = 1
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 criterion = torch.nn.MSELoss()
 #%%
-def get_data(prop):
+def get_data(prop, BS):
     trn_dt = PhysPropData(root=f'../OPERA Properties/{prop}/', filename='train.csv')
     tst_dt = PhysPropData(root=f'../OPERA Properties/{prop}/', filename='test.csv', test=True)
     torch.manual_seed(0)
-    train_loader = DataLoader(trn_dt, batch_size=32, shuffle=True)
-    test_loader = DataLoader(tst_dt, batch_size=32)
+    train_loader = DataLoader(trn_dt, batch_size=BS, shuffle=True)
+    test_loader = DataLoader(tst_dt, batch_size=BS)
     return train_loader, test_loader
 #%%
 def train(model, train_loader, optimizer, criterion, device):
@@ -91,7 +91,7 @@ def test(model, test_loader, criterion, device):
 ES_DICT = []
 def objective(trial):
     props = ['LogP','MP','BP','WS','VP','HL','AOH','KOC','BCF','KM','KOA','BioHL']
-    pr = 1
+    pr = 11
     #mlflow.set_experiment(props[0])
     with mlflow.start_run(run_name=props[pr], experiment_id=pr):
         if trial.number == 201:
@@ -106,7 +106,8 @@ def objective(trial):
         optimizer = getattr(optim, optimizer_name)(model.parameters(), lr=lr)
 
         # Get Data
-        train_loader, test_loader = get_data(props[pr])
+        #batch_size = trial.suggest_int("BatchSize",32,128,32)
+        train_loader, test_loader = get_data(props[pr], BS=32)
 
         # Training of the model.
         min_loss = np.Inf
@@ -153,7 +154,7 @@ def objective(trial):
 # %%
 if __name__=="__main__":
     props = ['LogP','MP','BP','WS','VP','HL','AOH','KOC','BCF','KM','KOA','BioHL']
-    study = optuna.create_study(study_name=f"{props[1]}_study", direction="minimize")
+    study = optuna.create_study(study_name=f"{props[11]}_study", direction="minimize")
     #study = optuna.create_study(directions=["minimize","minimize","minimize"])
     study.optimize(objective)
 
