@@ -131,3 +131,6 @@ dmypy.json
 # exclude my files
 *.sdf
 *.csv
+*.pt
+mlruns/
+MP_Old/

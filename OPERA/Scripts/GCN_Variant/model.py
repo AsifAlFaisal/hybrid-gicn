@@ -16,7 +16,7 @@ def GIN_Block(h_dim, nGIN):
 
 def GCN_Block(h_dim, nGCN):
     torch.manual_seed(0)
-    gcn_modules = ModuleList([GATConv(h_dim, h_dim) for _ in range(nGCN)]).append(GATConv(h_dim, h_dim//2))
+    gcn_modules = ModuleList([GCNConv(h_dim, h_dim) for _ in range(nGCN)]).append(GCNConv(h_dim, h_dim//2))
     return gcn_modules.to(device)
 
 
