@@ -11,7 +11,7 @@ from optuna.trial import TrialState
 import mlflow
 #%%
 EPOCHS = 200
-EARLY_STOPPING_STEPS = 10
+EARLY_STOPPING_STEPS = 15
 NUM_PROPS = 1
 #%%
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -91,7 +91,7 @@ def test(model, test_loader, criterion, device):
 ES_DICT = []
 def objective(trial):
     props = ['LogP','MP','BP','WS','VP','HL','AOH','KOC','BCF','KM','KOA','BioHL']
-    pr = 0
+    pr = 4
     with mlflow.start_run(run_name=props[pr], experiment_id=pr):
         if trial.number == 201:
             print("trial stopped")
@@ -153,7 +153,7 @@ def objective(trial):
 # %%
 if __name__=="__main__":
     props = ['LogP','MP','BP','WS','VP','HL','AOH','KOC','BCF','KM','KOA','BioHL']
-    study = optuna.create_study(study_name=f"{props[0]}_study", direction="minimize")
+    study = optuna.create_study(study_name=f"{props[4]}_study", direction="minimize")
     #study = optuna.create_study(directions=["minimize","minimize","minimize"])
     study.optimize(objective)
 
