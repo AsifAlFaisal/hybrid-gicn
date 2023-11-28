@@ -1,1 +1,12 @@
-Asif Al Faisal. (2023). AsifAlFaisal/hybrid-gicn: Hybrid GICN release-v1.0 (v1.0). Zenodo. https://doi.org/10.5281/zenodo.8024540
+cff-version: 1.1.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Faisal"
+  given-names: "Asif Al"
+  orcid: "https://orcid.org/0000-0002-3284-4617"
+title: "Physicochemical Properties Prediction of Chemical Substances with Hybrid-GICN"
+version: 1.0
+doi: 10.5281/zenodo.8024539
+date-released: 2023-06-11
+url: "https://github.com/AsifAlFaisal/hybrid-gicn"
+
