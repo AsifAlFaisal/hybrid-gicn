@@ -1,10 +1,10 @@
 @software{asif_al_faisal_2023_8024540,
   author       = {Asif Al Faisal},
-  title        = {AsifAlFaisal/hybrid-gicn: Hybrid GICN release-v1.0},
-  month        = jun,
-  year         = 2023,
-  publisher    = {Zenodo},
-  version      = {v1.0},
   doi          = {10.5281/zenodo.8024540},
-  url          = {https://doi.org/10.5281/zenodo.8024540}
+  month        = {06},
+  title        = {AsifAlFaisal/hybrid-gicn: Hybrid GICN release-v1.0},
+  publisher    = {Zenodo},
+  url          = {https://doi.org/10.5281/zenodo.8024540},
+  version      = {v1.0},
+  year         = {2023}
 }
